@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportTool", "ReportTool\ReportTool.csproj", "{DBB0B4B4-9E7C-4B8B-ADE6-C4C40D715B1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBB0B4B4-9E7C-4B8B-ADE6-C4C40D715B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB0B4B4-9E7C-4B8B-ADE6-C4C40D715B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB0B4B4-9E7C-4B8B-ADE6-C4C40D715B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB0B4B4-9E7C-4B8B-ADE6-C4C40D715B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2ACF36C3-6A1D-4C8A-BB1B-BA1E9B5F7BC9}
+	EndGlobalSection
+EndGlobal

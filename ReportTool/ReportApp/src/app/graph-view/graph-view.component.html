@@ -1,0 +1,77 @@
+<h1>Project: {{id}}</h1>
+<div>
+  <h5>Repo:</h5>
+  <div>
+    <select class='form-control' name="repo" ngModel #repo (change)="onRepoChanged(repo.value)">
+      <option *ngFor="let repo of repos" [ngValue]="repo">
+        {{ repo }}
+      </option>
+    </select>
+    </div>
+    <h5>Type:</h5>
+    <select class='form-control' name="type" ngModel (change)="onTypeChanged($event.target.value)">
+      <option *ngFor="let type of types" [ngValue]="type">
+        {{ type }}
+      </option>
+    </select>
+  <br />
+    <button type="button" class="btn btn-primary" (click)="createGraph()">Create Graph</button>
+</div>
+<br />
+
+<div [chart]="chart"></div>
+
+<ng-container *ngIf="isVisible">
+  <div style="margin: auto; max-width: 1000px; margin-bottom: 50px;">
+    <data-table id="persons-grid"
+                headerTitle="Employees (Double click)"
+                [items]="items"
+                [itemCount]="itemCount"
+                (reload)="reloadItems($event)"
+                [pagination]="false"
+                [header]="false">
+      <data-table-column [property]="'Date'" [header]="'Date'" [width]="100" [sortable]="true">
+        <ng-template #dataTableCell let-item="item">
+          <span>{{ item.Date | date: 'yyyy-MM-dd' }}</span>
+        </ng-template>
+      </data-table-column>
+      <data-table-column [property]="'Build'" [width]="100"
+                         [header]="'Build'" [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'Label'"
+                         [header]="'Label'" [sortable]="true">
+      </data-table-column>
+      <data-table-column [property]="'Samples'"
+                         [header]="'Samples'"
+                         [width]="100"
+                         [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'Average'"
+                         [header]="'Average'"
+                         [width]="100"
+                         [sortable]="true"
+                         [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'Min'"
+                         [header]="'Min'"
+                         [width]="100"
+                         [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'Max'"
+                         [header]="'Max'"
+                         [width]="100"
+                         [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'StdDev'"
+                         [header]="'Std Dev'"
+                         [width]="100"
+                         [resizable]="true">
+      </data-table-column>
+      <data-table-column [property]="'ErrorRate'"
+                         [header]="'Error Rate'"
+                         [width]="100"
+                         [resizable]="true">
+      </data-table-column>
+    </data-table>
+  </div>
+  </ng-container>

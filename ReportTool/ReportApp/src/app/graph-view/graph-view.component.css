@@ -1,0 +1,15 @@
+
+:host /deep/ .data-table-row {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.ui-select-choices {
+  position: fixed;
+  top: auto;
+  left: auto;
+  width: inherit;
+}
