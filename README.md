@@ -33,7 +33,7 @@ Below are some examples to how to submit reports in an automated way.  Possible 
     string responseBody = HttpPost("http://localhost:6000/api/Reports", settings =>
     {
       settings.SetContentType("application/json")
-      settings.SetRequestBody("{
+      settings.SetRequestBody("{  
         "Project":"Test",
         "Repo":"TestApi",
         "Type":"Performance",
@@ -61,15 +61,16 @@ Below are some examples to how to submit reports in an automated way.  Possible 
             "Throughput":"1"
           }
         ]
-      }");
+      }");  
     });
     Information(responseBody);
   });
 ```
 
 ### curl
+
 ```sh
-  curl -H "Content-Type: application/json" -X POST http://localhost:6000/api/Reports 
+  curl -H "Content-Type: application/json" -X POST http://localhost:6000/api/Reports  
     -d '{
         "Project":"Test",
         "Repo":"TestApi",
@@ -101,7 +102,9 @@ Below are some examples to how to submit reports in an automated way.  Possible 
       }");
     }'
 ```
+
 ### Powershell
+
 ```powershell
   $Uri = 'http://localhost:6000/api/Reports'
   $Body = @{
@@ -110,7 +113,7 @@ Below are some examples to how to submit reports in an automated way.  Possible 
     Type = 'Performance'
     Date = '1/1/2020'
     Build = '1.0.0'
-    ReportItems = { 
+    ReportItems = {  
       Label = 'Spike'
       Samples = '1'
       Average = '37'
@@ -120,7 +123,7 @@ Below are some examples to how to submit reports in an automated way.  Possible 
       ErrorRate = '0'
       Throughput = '1'
     },
-    { 
+    {  
       Label = 'Load'
       Samples = '1'
       Average = '40'
@@ -133,7 +136,9 @@ Below are some examples to how to submit reports in an automated way.  Possible 
   }
   $Result = Invoke-WebRequest -Uri $Uri -Method Post -Body $Body -ContentType 'application/json'
 ```
+
 ### C# HttpClient
+
 ```C#
   using Newtonsoft.Json;
   using System.Net.Http;
@@ -147,8 +152,8 @@ Below are some examples to how to submit reports in an automated way.  Possible 
 
   var httpClient = new HttpClient();
   var url = "http://localhost:6000/api/Reports";
-  var data = new 
-  { 
+  var data = new  
+  {  
     Project = "Test",
     Repo = "TestApi",
     Type = "Performance",
@@ -184,9 +189,11 @@ Below are some examples to how to submit reports in an automated way.  Possible 
  ```
 
 ## Report Format
+
   Each Report is categorized by Project, then Repo, then Type.  These are defined by whoever submits the report.
   They each Report is ordered by the Date it was submitted and a Build metadata can be included.  Each Report can
-  contain multiple ReportItems.  These are grouped by Label, each label is graphed as its own line in the chart. 
+  contain multiple ReportItems.  These are grouped by Label, each label is graphed as its own line in the chart.  
+
   ```JSON
     {
       "Project":"",
@@ -219,5 +226,5 @@ Below are some examples to how to submit reports in an automated way.  Possible 
 
 ## Build
 
-The ReportTool Repo is at:  <br/>
-The ReportTool is hosted at: and the database is at:  <br/>
+The ReportTool Repo is at:  
+The ReportTool is hosted at: and the database is at:  
