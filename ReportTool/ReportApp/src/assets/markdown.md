@@ -11,40 +11,119 @@
   - **GET api/Project/(project)** Get Project details
   - **GET api/Project/(project)/Repos** Get All Repos for a project
   - **GET api/Project/(project)/Repos/(repo)** Get Repo details
+  - **POST api/Reports** Post a new Report
 
 ## Publishing Reports 
+Below are some examples to how to submit reports in an automated way.  Possible a Cake step in Jenkins, or via command line with powershell or bash, or in a custom C# Application.
 ### Reporting.Cake 
 ```C#
   #addin "nuget:https://www.nuget.org/api/v2?package=Cake.Http"
 
-  Task("Http-POST-With-Settings-Fluent")
-    .Description("Basic http 'POST' request with fluent settings and setting request body.")
+  Task("Http-POST-ReportItems")
+    .Description("Post Performance Report Items")
     .Does(() =>
   {
-    string responseBody = HttpPost("https://www.google.com", settings =>
+    string responseBody = HttpPost("http://localhost:6000/api/Reports", settings =>
     {
       settings.SetContentType("application/json")
-      settings.SetRequestBody("{ "id": 123, "name": "Test Test" }");
+      settings.SetRequestBody("{
+        "Project":"Test",
+        "Repo":"TestApi",
+        "Type":"Performance",
+        "Date":"1/1/2020",
+        "Build":"1.0.0",
+        "ReportItems":[
+          {
+            "Label":"Spike",
+            "Samples":"1",
+            "Average":"37",
+            "Min":"37",
+            "Max":"37",
+            "StdDev":"0",
+            "ErrorRate":"0",
+            "Throughput":"1"
+          },
+          {
+            "Label":"Load",
+            "Samples":"1",
+            "Average":"40",
+            "Min":"40",
+            "Max":"40",
+            "StdDev":"0",
+            "ErrorRate":"0",
+            "Throughput":"1"
+          }
+        ]
+      }");
     });
     Information(responseBody);
   });
 ```
 ### curl
 ```sh
-  curl -d '{"key1":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://localhost:3000/data
+  curl -H "Content-Type: application/json" -X POST http://localhost:6000/api/Reports 
+    -d '{
+        "Project":"Test",
+        "Repo":"TestApi",
+        "Type":"Performance",
+        "Date":"1/1/2020",
+        "Build":"1.0.0",
+        "ReportItems":[
+          {
+            "Label":"Spike",
+            "Samples":"1",
+            "Average":"37",
+            "Min":"37",
+            "Max":"37",
+            "StdDev":"0",
+            "ErrorRate":"0",
+            "Throughput":"1"
+          },
+          {
+            "Label":"Load",
+            "Samples":"1",
+            "Average":"40",
+            "Min":"40",
+            "Max":"40",
+            "StdDev":"0",
+            "ErrorRate":"0",
+            "Throughput":"1"
+          }
+        ]
+      }");
+    }'
 ```
 ### Powershell
 ```powershell
-  $Uri = 'https://api.contoso.com/v2/profile'
-  $Form = @{
-    firstName  = 'John'
-    lastName   = 'Doe'
-    email      = 'john.doe@contoso.com'
-    avatar     = Get-Item -Path 'c:\\Pictures\\jdoe.png'
-    birthday   = '1980-10-15'
-    hobbies    = 'Hiking','Fishing','Jogging'
+  $Uri = 'http://localhost:6000/api/Reports'
+  $Body = @{
+    Project = 'Test'
+    Repo = 'TestApi'
+    Type = 'Performance'
+    Date = '1/1/2020'
+    Build = '1.0.0'
+    ReportItems = { 
+      Label = 'Spike'
+      Samples = '1'
+      Average = '37'
+      Min = '37'
+      Max = '37'
+      StdDev = '0'
+      ErrorRate = '0'
+      Throughput = '1'
+    },
+    { 
+      Label = 'Load'
+      Samples = '1'
+      Average = '40'
+      Min = '40'
+      Max = '40'
+      StdDev = '0'
+      ErrorRate = '0'
+      Throughput = '1'
+    }
   }
-  $Result = Invoke-WebRequest -Uri $Uri -Method Post -Form $Form
+  $Result = Invoke-WebRequest -Uri $Uri -Method Post -Body $Body -ContentType 'application/json'
 ```
 ### C# HttpClient
 ```C#
@@ -59,16 +138,71 @@
   }
 
   var httpClient = new HttpClient();
-  var url = "https://www.duolingo.com/2016-04-13/login?fields=";
-  var data = new { identifier = "username", password = "password" };
+  var url = "http://localhost:6000/api/Reports";
+  var data = new 
+  { 
+    Project = "Test",
+    Repo = "TestApi",
+    Type = "Performance",
+    Date = "1/1/2020",
+    Build = "1.0.0",
+    ReportItems = new[]
+    {
+       new
+       {
+         Label = "Spike",
+         Samples = "1",
+         Average = "37",
+         Min = "37",
+         Max = "37",
+         StdDev = "0",
+         ErrorRate = "0",
+         Throughput = "1"
+       },
+       new
+       {
+         Label = "Load",
+         Samples = "1",
+         Average = "40",
+         Min = "40",
+         Max = "40",
+         StdDev = "0",
+         ErrorRate = "0",
+         Throughput = "1"
+       }
+    }
+  };
   var result = await httpClient.PostAsync(url, data.AsJson());
  ```
 
 ## Report Format
-  - Report
-  - ReportItem
+  Each Report is categorized by Project, then Repo, then Type.  These are defined by whoever submits the report.
+  They each Report is ordered by the Date it was submitted and a Build metadata can be included.  Each Report can
+  contain multiple ReportItems.  These are grouped by Label, each label is graphed as its own line in the chart. 
+  ```JSON
+    {
+      "Project":"",
+      "Repo":"",
+      "Type":"",
+      "Date":"",
+      "Build":"",
+      "ReportItems":[
+        {
+          "Label":"",
+          "Samples":"",
+          "Average":"",
+          "Min":"",
+          "Max":"",
+          "StdDev":"",
+          "ErrorRate":"",
+          "Throughput":""
+        }
+      ]
+    }
+  ```
 
 ## Report Types
+  These could be anything, some examples could be reporting output from:
   - JMeter csv files
   - Corbetura Code Coverage
   - Anything with a percent or time
