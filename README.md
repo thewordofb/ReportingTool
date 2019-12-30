@@ -33,35 +33,35 @@ Below are some examples to how to submit reports in an automated way.  Possible 
     string responseBody = HttpPost("http://localhost:6000/api/Reports", settings =>
     {
       settings.SetContentType("application/json")
-      settings.SetRequestBody("{{
-        \"Project\":\"Test\",
-        \"Repo\":\"TestApi\",
-        \"Type\":\"Performance\",
-        \"Date\":\"1/1/2020\",
-        \"Build\":\"1.0.0\",
-        \"ReportItems\":[
-          {{
-            \"Label\":\"Spike\",
-            \"Samples\":\"1\",
-            \"Average\":\"37\",
-            \"Min\":\"37\",
-            \"Max\":\"37\",
-            \"StdDev\":\"0\",
-            \"ErrorRate\":\"0\",
-            \"Throughput\":\"1\"
-          }},
-          {{
-            \"Label\":\"Load\",
-            \"Samples\":\"1\",
-            \"Average\":\"40\",
-            \"Min\":\"40\",
-            \"Max\":\"40\",
-            \"StdDev\":\"0\",
-            \"ErrorRate\":\"0\",
-            \"Throughput\":\"1\"
-          }}
-        ]
-      }}");  
+      settings.SetRequestBody("{{"+
+        "\"Project\":\"Test\","+
+        "\"Repo\":\"TestApi\","+
+        "\"Type\":\"Performance\","+
+        "\"Date\":\"1/1/2020\","+
+        "\"Build\":\"1.0.0\","+
+        "\"ReportItems\":["+
+          "{{"+
+            "\"Label\":\"Spike\","+
+            "\"Samples\":\"1\","+
+            "\"Average\":\"37\","+
+            "\"Min\":\"37\","+
+            "\"Max\":\"37\","+
+            "\"StdDev\":\"0\","+
+            "\"ErrorRate\":\"0\","+
+            "\"Throughput\":\"1\""+
+          "}},"+
+          "{{"+
+            "\"Label\":\"Load\","+
+            "\"Samples\":\"1\","+
+            "\"Average\":\"40\","+
+            "\"Min\":\"40\","+
+            "\"Max\":\"40\","+
+            "\"StdDev\":\"0\","+
+            "\"ErrorRate\":\"0\","+
+            "\"Throughput\":\"1\""+
+          "}}"+
+        "]"+
+      "}}");  
     });
     Information(responseBody);
   });
