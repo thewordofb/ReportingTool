@@ -16,6 +16,8 @@ First we need to run a powershell script to register/install a few functions to 
 PS C:\> ReportPublisher.ps1
 ```
 
+The script will add two Powershell functions, ```Process-JMeterCSV``` and ```Publish-JMeter```.  The script can be found here: [ReportPublisher.ps1](https://github.com/thewordofb/ReportingTool/blob/master/JMeter/ReportPublisher.ps1)
+
 ### Parse Reports
 
 Next we need to parse the output.csv file so we can extract the line items from the reports
