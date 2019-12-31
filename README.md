@@ -188,6 +188,10 @@ Below are some examples to how to submit reports in an automated way.  Possible 
   var result = await httpClient.PostAsync(url, data.AsJson());
  ```
 
+### JMeter Reporting Sample
+
+  [JMeter Sample](JMeter/README.md)
+
 ## Report Format
 
   Each Report is categorized by Project, then Repo, then Type.  These are defined by whoever submits the report.
