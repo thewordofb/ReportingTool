@@ -1,0 +1,3 @@
+Label,Samples,Average,Min,Max,StdDev,ErrorRate,Throughput
+Spike,1,20,20,20,0,0,1
+Load,1,30,30,30,0,0,1
