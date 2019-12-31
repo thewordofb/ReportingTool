@@ -2,13 +2,7 @@
 
 This is a sample to automate running JMeter JMX tests, parse and then publish the results so it can be viewable from the Reporting Tool
 
-## Run JMeter via CommandLine
-
-```PowerShell
-PS C:\>
-```
-
-## Processing Reports
+## Install Powershell scripts
 
 First we need to run a powershell script to register/install a few functions to do the parsing and publishing of JMeter CSV output files
 
@@ -16,7 +10,22 @@ First we need to run a powershell script to register/install a few functions to 
 PS C:\> ReportPublisher.ps1
 ```
 
-The script will add two Powershell functions, ```Process-JMeterCSV``` and ```Publish-JMeter```.  The script can be found here: [ReportPublisher.ps1](https://github.com/thewordofb/ReportingTool/blob/master/JMeter/ReportPublisher.ps1)
+The script will add three Powershell functions, ```Git-JMeterJMX```, ```Process-JMeterCSV``` and ```Publish-JMeter```.  The script can be found here: [ReportPublisher.ps1](https://github.com/thewordofb/ReportingTool/blob/master/JMeter/ReportPublisher.ps1)
+
+## Sync Latest JMX Tests
+
+Sync the latest powershell JMX tests from bitbucket
+
+```Powershell
+```
+
+## Run JMeter via CommandLine
+
+```PowerShell
+PS C:\>
+```
+
+## Processing Reports
 
 ### Parse Reports
 

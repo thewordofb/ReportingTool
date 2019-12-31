@@ -190,7 +190,7 @@ Below are some examples to how to submit reports in an automated way.  Possible 
 
 ### JMeter Reporting Sample
 
-  [JMeter Sample](JMeter/README.md)
+  You can find a [JMeter Reporting Sample](JMeter/README.md) in the JMeter directory.  This sample will allow you to run the JMeter JMX files via command-line, capture the output csv data, and publish it.
 
 ## Report Format
 
