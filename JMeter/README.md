@@ -16,13 +16,29 @@ The script will add three Powershell functions, ```Git-JMeterJMX```, ```Process-
 
 Sync the latest powershell JMX tests from bitbucket
 
-```Powershell
-```
+- Install Git for Windows
+- Add Git to your PATH
+  - Control Panel/System and Security/System/Advanced system settings
+  - ;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Git\bin;
+- Configure Git
+  
+  ```Powershell
+  C:\> git config --global user.name "Test User"
+  C:\> git config --global user.email "TestUser@test.com"
+  ```
+
+- Clone from Git
+
+    ```Powershell
+    git clone git://bitbucket.com/test/testrepo.git
+    ```
 
 ## Run JMeter via CommandLine
 
+Run JMeter as a commad-line with no GUI.  Reference your test .jmx files and output the results to a .csv file
+
 ```PowerShell
-PS C:\>
+PS C:\>jmeter -n -t D:\TestScripts\script.jmx -l D:\TestScripts\scriptresults.csv
 ```
 
 ## Processing Reports
